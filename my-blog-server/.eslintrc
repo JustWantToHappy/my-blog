@@ -1,0 +1,17 @@
+{
+  "extends": "eslint-config-egg/typescript",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-spaced-func":"off",
+    "array-bracket-newline": "off",
+    "no-trailing-spaces": "off",
+    "space-in-parens": "off",
+    "indent": 4,
+    "no-multiple-empty-lines": "off",
+    "space-before-blocks": "off",
+    "no-irregular-whitespace": "off",
+    "space-before-function-paren": "off"
+  }
+}
