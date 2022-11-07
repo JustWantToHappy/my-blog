@@ -5,9 +5,10 @@ const Header = () => {
     const isShow = useContext(Context).showMenu;
     return <StyleHeader show={isShow}>
         <ul className='nav'>
-            <li>首页</li>
-            <li>分类</li>
+            <li>Article</li>
+            <li>Classify</li>
             <li>Github</li>
+            <li>About</li>
         </ul>
     </StyleHeader>
 }

@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
+    "noImplicitThis": false, //默认this具有隐式的any类型
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,

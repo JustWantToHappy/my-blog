@@ -83,6 +83,30 @@ i{
 export const StyleHome = styled("div")`
 position: relative;
 transform: translate3d(0,100vh,0);
-height:1000vh;
 background-color: ${(props: { issun: boolean }) => props.issun ? '#fff' : 'black'};
+ul{
+    width:70%;
+    margin:0 auto;
+    list-style: none;
+}
+.content{
+    height:30vh;
+    width:100%;
+    padding:4vh 0;
+    display:flex;
+    img{
+        height: 100%;
+    }
+    .title{
+        height: 100%;
+        width:59%;
+        display:flex;
+        background-color: red;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        transform: translate3d(3vw,0,0);
+    }
+    border-bottom:1px solid #d4d4d4;
+}
 `
