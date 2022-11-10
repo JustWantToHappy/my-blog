@@ -37,31 +37,31 @@ const Home: React.FC = () => {
     }
   });
   return (
-    <Admin inputTheme={theme}>
-      <div>
-        <div className="avatar">
-          <Avatar size={60} icon={<UserOutlined />} />
-          <h4 style={{ marginTop: "10%" }}>useHook</h4>
+      <Admin inputTheme={theme}>
+        <div>
+          <div className="avatar">
+            <Avatar size={60} icon={<UserOutlined />} />
+            <h4 style={{ marginTop: "10%" }}>useHook</h4>
+          </div>
+          <div className='menu'>
+            <ul>
+              {menu.map((item => {
+                return <li key={item.id} style={{ color: item.id === current ? theme === 'dark' ? '#E6A23C' : '#00FFFF' : '' }} onClick={() => changeRoute(item)}>
+                  <span className="icon">{item.icon}</span>
+                  <span>{item.name}</span>
+                </li>
+              }))}
+            </ul>
+          </div>
+          <div className='shift'>
+            <span style={{ marginRight: "10px" }}>Dark</span>
+            <Switch onClick={changeTheme} />
+          </div>
         </div>
-        <div className='menu'>
-          <ul>
-            {menu.map((item => {
-              return <li key={item.id} style={{ color: item.id === current ? theme === 'dark' ? '#E6A23C' : '#00FFFF' : '' }} onClick={() => changeRoute(item)}>
-                <span className="icon">{item.icon}</span>
-                <span>{item.name}</span>
-              </li>
-            }))}
-          </ul>
-        </div>
-        <div className='shift'>
-          <span style={{ marginRight: "10px" }}>Dark</span>
-          <Switch onClick={changeTheme} />
-        </div>
-      </div>
-      <Main inputTheme={theme}>
-        <Outlet />
-      </Main>
-    </Admin>
+        <Main inputTheme={theme}>
+          <Outlet />
+        </Main>
+      </Admin>
   );
 };
 

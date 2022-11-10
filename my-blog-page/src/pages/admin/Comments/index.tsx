@@ -1,10 +1,17 @@
+import { useState } from "react"
 import { Header } from "../MyWorld/style"
-import { FireOutlined, SyncOutlined, EyeOutlined, MessageOutlined, DeleteOutlined } from "@ant-design/icons"
-import { Space, Table, Pagination, Button } from 'antd';
+import { Space, Table, Pagination, Button, Popconfirm, Tooltip } from 'antd';
+import {
+    FireOutlined,
+    SyncOutlined,
+    EyeOutlined,
+    MessageOutlined,
+    DeleteOutlined,
+} from "@ant-design/icons"
 import Main from "./style";
 import { ScrollStyle } from "../../../assets/css"
+import Modal from "./Modal"
 const { Column } = Table;
-
 interface DataType {
     key: React.Key;
     firstName: string;
@@ -69,10 +76,22 @@ const data: DataType[] = [
 ];
 
 const Comments = () => {
+    const [mask, setMask] = useState(false);
+    const showModal = () => {
+        setMask(true);
+    }
+    const closeModal = () => {
+        setMask(false);
+    }
+    const deleteComment = () => {
+
+    }
+    const shieldComment = () => {
+    }
     return <>
         <Header>
             <FireOutlined />
-            <p>评论列表{ }</p>
+            <p>评论列表({64})</p>
             <p style={{ right: '5vw', position: "absolute", display: "flex", alignItems: 'center' }}>
                 <SyncOutlined style={{ transform: "translateX(-1vw)" }} />
                 <Button type="link" >一键已读</Button>
@@ -100,13 +119,20 @@ const Comments = () => {
                         className="options"
                         render={(_: any, record: DataType) => (
                             <Space size="middle">
-                                <EyeOutlined />
-                                <MessageOutlined />
-                                <DeleteOutlined />
+                                <Popconfirm placement="top" title={"确定屏蔽这条评论"} okText="Yes" cancelText="No" onConfirm={shieldComment}>
+                                    <EyeOutlined />
+                                </Popconfirm>
+                                <Tooltip placement="top" title={"评论"} color="#fff" overlayInnerStyle={{ color: "black" }} >
+                                    <MessageOutlined onClick={showModal} />
+                                </Tooltip>
+                                <Popconfirm placement="top" title={"确定删除这条评论"} okText="Yes" cancelText="No" onConfirm={deleteComment}>
+                                    <DeleteOutlined />
+                                </Popconfirm>
                             </Space>
                         )}
                     />
                 </Table>
+                <Modal mask={mask} close={closeModal} />
                 <Pagination className="pagination" />
             </ScrollStyle>
         </Main>

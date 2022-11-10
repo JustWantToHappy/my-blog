@@ -1,9 +1,13 @@
 /* 引入antd样式 */
 @import '~antd/dist/antd.css';
+
 :root {
+  /* 前台后台主调色 */
   --main-bg: #fff;
   /* 页面滚动条颜色 */
   --page-scroll-bg: skyblue;
+  /* 后台按钮主要颜色 */
+  --admin-button-color: #44c7f5;
 }
 
 body {
