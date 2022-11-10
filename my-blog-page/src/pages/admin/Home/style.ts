@@ -19,6 +19,9 @@ transition:background-color 500ms linear;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    h4{
+      color:${(props: { inputTheme: string }) => props.inputTheme === 'dark' ? '#fff' : '#000'};
+    }
   }
   .menu{
     height:50%;
@@ -38,6 +41,10 @@ transition:background-color 500ms linear;
       height: 100%;
       align-items:center;
       justify-content: center;
+      cursor: pointer;
+      &:hover{
+        background:${(props: { inputTheme: string }) => props.inputTheme === 'dark' ? '#F2F6FC' : '#303133'}};
+      }
     }
   }
   .icon{
@@ -54,6 +61,7 @@ transition:background-color 500ms linear;
   }
 }
 `;
+
 const Main = styled.div`
   width:100%;
   height:100vh;
@@ -63,6 +71,7 @@ const Main = styled.div`
   border-bottom-left-radius: 50px;
   background-color: #F2F6FC;
   display: inline-block;
-
+  padding-left:50px;
+  border-left:${(props: { inputTheme: string }) => props.inputTheme === 'dark' ? '0.1px solid #001529' : ''};
 `;
 export { Admin, Main };

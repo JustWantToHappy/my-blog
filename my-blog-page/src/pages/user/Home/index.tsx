@@ -6,7 +6,6 @@ import nav from "../../../assets/icons/nav.svg";
 import sun from "../../../assets/icons/sun.svg";
 import moon from "../../../assets/icons/moon.svg";
 import close from "../../../assets/icons/close.svg";
-// import { ArticleType } from "../../../typing/contants"
 const Home = () => {
     const contextObj = useContext(Context);
     const container = useRef<HTMLDivElement>(null);

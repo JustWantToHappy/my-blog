@@ -1,3 +1,4 @@
+import { message } from "antd"
 const throttle = (fn: Function, delay: number) => {
     var timer: ReturnType<typeof setTimeout> | null;
     return function () {
@@ -15,4 +16,10 @@ const throttle = (fn: Function, delay: number) => {
 const debouce = () => {
 
 }
-export { throttle, debouce };
+const successMsg = (msg: string) => {
+    message.success(msg);
+}
+const failMsg = (msg: string) => {
+    message.error(msg);
+}
+export { throttle, debouce, successMsg, failMsg };
