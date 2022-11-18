@@ -15,8 +15,18 @@ export const throttle = (fn: Function, delay: number) => {
     }
 }
 //防抖函数
-export const debouce = () => {
-
+export const debouce = (fn: Function, delay: number) => {
+    var timer: ReturnType<typeof setTimeout>;
+    return function () {
+        let args = arguments;
+        let _this = this;
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+            fn.apply(_this, args);
+        }, delay);
+    }
 }
 //将File文件转为dataURL字符串
 export const fileToDataURL = (file: File): Promise<string> => {

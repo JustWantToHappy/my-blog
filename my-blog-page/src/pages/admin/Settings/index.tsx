@@ -10,6 +10,9 @@ const Main = styled("div")`
     background:var(--main-bg);
     border-radius: 20px;
     min-width: 428px;
+    .ant-upload-list-picture-card-container{
+        margin-right:2vw;
+    }
 `;
 const Footer = styled("footer")`
     display: flex;
@@ -25,19 +28,19 @@ const Settings = () => {
     //是否展示网站信息面板
     const [show, setShow] = useState(true);
     return <>
-        <Header>
-            {show && <>
+        <Header >
+            {show && <span className="animate__animated animate__flipInY">
                 <ToolOutlined />
                 <p >网站信息</p>
-            </>}
-            {!show && <>
+            </span>}
+            {!show && <span className="animate__animated animate__flipInY">
                 <HeartOutlined />
                 <p>首屏渲染</p>
-            </>}
+            </span>}
         </Header>
         <Main >
-          {show&&<Info/>}      
-          {!show&&<View/>}
+            {show && <Info />}
+            {!show && <View />}
         </Main>
         <Footer>
             <LeftOutlined style={{ cursor: "pointer" }} onClick={() => setShow(!show)} />

@@ -6,6 +6,7 @@ import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 import { IDomEditor } from '@wangeditor/editor'
 import { useEditor, toolbarConfig } from "./Config"
+import MyButton from "../../../components/Buttons"
 import styled from "styled-components"
 const Main = styled("div")`
   width:95%;
@@ -31,6 +32,9 @@ const NewArticle = () => {
         <Header>
             <SendOutlined />
             <p>{title}</p>
+            <div className="buttons">
+                <MyButton color="#44C7F5" shape="round" fontSize={10} >Publish</MyButton>
+            </div>
         </Header>
         <Main>
             <Input placeholder="标题" size="large" style={{ marginBottom: '2vh', paddingLeft: "1vw" }} />

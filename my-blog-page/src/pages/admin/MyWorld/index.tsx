@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { SmileOutlined } from "@ant-design/icons"
 import dayjs from "dayjs";
 import { World, Header } from "./style";
 const MyWorld = () => {
+    const rightRef = useRef<HTMLDivElement>(null);
     let title = "在阳光明媚的下午出发";
     const sakura = {
         title: "Sakura",
@@ -20,12 +21,7 @@ const MyWorld = () => {
         tips: "过去的时间里，收获了更多的心声"
     }
     const animations = [
-        "千与千寻",
-        "CLANNAD",
-        "只有我不存在的城市",
-        "86,不存在的战区",
-        "龙猫",
-        "——……——"
+        'hhh'
     ]
     const getCurrentTime = () => {
         var now = dayjs(new Date()).format("YYYY年MM月DD日 hh时mm分 A")
@@ -33,6 +29,10 @@ const MyWorld = () => {
     }
     useEffect(() => {
         getCurrentTime();
+        const style = rightRef.current?.style;
+        style && (() => {
+            style.filter = "blur(0px)";
+        })();
     }, []);
     useEffect(() => {
         let timer = setInterval(() => {
@@ -75,13 +75,12 @@ const MyWorld = () => {
                 <div className="animation">
                     <header>ANIMATION</header>
                     <ul>
-                        {animations.map(item => <li key={item}>{item}</li>)}
                     </ul>
                 </div>
             </div>
         </div>
         <div className="decoration">
-            <div className="right">
+            <div className="right" ref={rightRef}>
                 <div className="card">
                     <h1 className="title">{sakura.title}</h1>
                     <p className="mood">

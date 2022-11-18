@@ -1,5 +1,4 @@
-import { Form, Input, Select, Avatar, DatePicker, Upload } from "antd"
-import { UserOutlined } from "@ant-design/icons"
+import { Form, Input, Select, DatePicker, Upload } from "antd"
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { onPreview, beforeUpload, uploadImage } from "../utils"
 import ImgCrop from "antd-img-crop"
@@ -39,19 +38,12 @@ const Info = () => {
             form={form}
             name="control-hooks"
             initialValues={initSettings}
-            style={{ height: "100%", paddingTop: "5%" }}
+            style={{ height: "100%", paddingTop: "3%" }}
         >
-            <Form.Item
-                name="avatar"
-                label="Admin Avatar"
-                style={{ height: "20%" }}
-            >
-                <Avatar size={60} icon={<UserOutlined />} />
-            </Form.Item>
             <Form.Item
                 name="imgFile"
                 label="Upload Avatar"
-                style={{ height: "30%"}}
+                style={{ height: "35%" }}
             >
                 <ImgCrop rotate>
                     <Upload
@@ -62,6 +54,7 @@ const Info = () => {
                         maxCount={1}
                         beforeUpload={beforeUpload}
                         customRequest={uploadImage}
+                        style={{ width: "100%" }}
                     >
                         {'+ Upload'}
                     </Upload>
@@ -71,15 +64,15 @@ const Info = () => {
                 name="adminName"
                 label="Name"
                 rules={[{ required: true, message: "Name is required" }]}
-                style={{ height: "12%" }}
+                style={{ height: "16%" }}
             >
-                <Input allowClear={true} style={{ padding: "0 10px" }} />
+                <Input allowClear={true} style={{ padding: "0 10px" }} size="large" />
             </Form.Item>
             <Form.Item
                 name="gender"
                 label="Gender"
                 rules={[{ required: true }]}
-                style={{ height: "12%" }}
+                style={{ height: "16%" }}
             >
                 <Select
                     placeholder="Select a option and change input text above"
@@ -104,16 +97,16 @@ const Info = () => {
                         message: 'Please input your E-mail!',
                     },
                 ]}
-                style={{ height: "12%" }}
+                style={{ height: "16%" }}
             >
-                <Input style={{ padding: "0 10px" }} allowClear={true} />
+                <Input style={{ padding: "0 10px" }} allowClear={true} size="large" />
             </Form.Item>
             <Form.Item
                 name="birthday"
                 label="BirthDay"
-                style={{ height: "12%" }}
+                style={{ height: "16%" }}
             >
-                <DatePicker format="YYYY MM-DD" style={{ width: "100%", padding: "0 10px" }} />
+                <DatePicker format="YYYY MM-DD" style={{ width: "100%", padding: "0 10px" }} size="large" />
             </Form.Item>
         </Form>
     </>

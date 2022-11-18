@@ -36,6 +36,7 @@ width:100%;
 height:100%;
 padding-right:2px;
 display: flex;
+color:#666666;
 .body{
     width:80%;
     height:100%;
@@ -89,6 +90,8 @@ display: flex;
     background:${() => `url(${require("../../../assets/imgs/cherry.jpg")})`};
     background-size: cover;
     background-position: 40%;
+    filter:blur(4px);
+    transition:filter 2000ms linear;
     width: 100%;
     .card {
       color: #f3f2f4;
@@ -122,13 +125,25 @@ display: flex;
     
 `;
 const Header = styled.header`
-        width:96%;
+        width:95%;
         height:10%;
         display:flex;
         align-items: center;
         color:${titleColor};
+        position: relative;
         p{
             transform: translateX(1vw);
+        }
+        span{
+          display:flex;
+          align-items: center;
+        }
+        .buttons{
+          position:absolute;
+          right:0;
+          width:15%;
+          display:flex;
+          justify-content: flex-end;
         }
 `;
 /* 每个卡片顶部标题的样式 */

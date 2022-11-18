@@ -1,6 +1,6 @@
 import { StyleIndex } from "./style";
 import { StyleHome } from "./style";
-import React, { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { Context } from "../../../App";
 import nav from "../../../assets/icons/nav.svg";
 import sun from "../../../assets/icons/sun.svg";

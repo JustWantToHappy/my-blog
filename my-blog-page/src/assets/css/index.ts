@@ -109,6 +109,9 @@ const CommentMask = styled(Mask)`
 `;
 // 当文字内容比较多的时候，省略号带过
 const OmitStyle = styled("p")`
-    
+    display:flex;
+    line-clamp: ${((props: { line: number }) => props.line ?? 1)};
+    box-orient: vertical;
+    overflow:hidden;
 `;
-export { ScrollStyle, Mask, CommentMask };
+export { ScrollStyle, Mask, CommentMask, OmitStyle };
