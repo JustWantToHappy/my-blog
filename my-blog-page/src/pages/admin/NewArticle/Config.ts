@@ -33,19 +33,19 @@ const useEditor = () => {
                 //单个文件上传成功后
                 onSuccess(file: File, res: any) {
                     console.log(`${file.name} 上传成功`, res)
-                    successMsg("图片上传成功!");
+                    successMsg({ content: "图片上传成功!", duration: 1 });
                 },
                 //单个文件上传失败
                 onFailed(file: File, res: any) {
                     console.log(`${file.name} 上传失败`, res)
                     setLoad(false);
-                    failMsg("图片上传失败");
+                    failMsg({ content: "图片上传失败!" });
                 },
                 //上传失败或者触发timeout超时
                 onError(file: File, err: any, res: any) {
                     console.log(`${file.name} 上传出错`, err, res)
                     setLoad(false);
-                    failMsg("图片上传失败");
+                    failMsg({ content: "图片上传失败!" });
                 }
             },
         },

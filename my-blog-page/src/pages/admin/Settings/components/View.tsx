@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from "styled-components";
+import MyButton from "../../../../components/Button"
 import {
     Form,
     Input,
@@ -18,10 +19,17 @@ const Container = styled("div")`
             img{
                 width:150px;
                 object-fit: cover;
+                margin-right: 3vw;
             }
         }
         input{
             padding-left:0.5rem;
+        }
+    }
+    .upload-cover{
+        height: 20%;
+        input[type='file']{
+          display: none;
         }
     }
 `;
@@ -35,14 +43,19 @@ interface ViewFrom {
 }
 const View = () => {
     const CurrentForm: ViewFrom = {
-        cover: "hhhh",
+        cover: "https://image.raindays.cn/Mood/image/1594348066004.png",
         title: "useHook",
-        description: "第十三颗光玉",    
+        description: "第十三颗光玉",
         time: "17 2006",
         ICP: "湘ICP备 254214号",
         ICPLink: "34436346"
     }
     const [form] = useState<ViewFrom>(CurrentForm);
+    const upload = useRef<HTMLInputElement>(null);
+    const modifyCover = () => {
+        upload.current?.click();
+        // previewPicture(upload.current);
+    }
     return <>
         <Container>
             <Form
@@ -53,8 +66,10 @@ const View = () => {
                 size="large"
                 initialValues={form}
             >
-                <Form.Item label="封面图" style={{ height: "20%" }} >
-                    <img src="https://image.raindays.cn/Mood/image/1594348066004.png" alt="图片无法显示" />
+                <Form.Item label="封面图" className="upload-cover" >
+                    <img src={CurrentForm.cover} alt="图片无法显示" />
+                    <MyButton color='skyblue' onClick={modifyCover}>修改封面</MyButton>
+                    <input type="file" ref={upload} />
                 </Form.Item>
                 <Form.Item label="标题" name="title">
                     <Input />

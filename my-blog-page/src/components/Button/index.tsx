@@ -3,6 +3,7 @@
  */
 import styled from "styled-components";
 import { useRef, useEffect, useState } from "react"
+import { debouce } from "../../utils"
 interface Btn {
     shape?: string;
     color?: string;
@@ -14,17 +15,17 @@ interface Btn {
 }
 //不对外部暴露的属性值
 interface BtnAdd extends Btn {
-    roundHeight?: number;
+    roundHeight?: number|undefined;
 }
 const Button = styled("button")`
     background:#fff;
     color:${(props: Btn) => props?.color ?? 'black'};
     border-radius: ${(props: Btn) => props?.shape === 'round' ? '50%' : '0%'};
-    height:${(props: BtnAdd) => props.roundHeight + 'px' ?? ''};
-    font-size:${(props: Btn) => props.fontSize + 'px' ?? '1rem'};
+    height:${(props: BtnAdd) => (props.roundHeight?? '')+'px'};
+    font-size:${(props: Btn) => (props.fontSize ?? '1rem')+'px'};
     border:1px solid #d4d4d4;
+    padding:0.2rem;
     cursor: pointer;
-    padding:2%;
     &:hover{
         border-color:${(props: Btn) => props.hoverBg ?? 'var(--admin-button-color)'};
     }
@@ -40,7 +41,12 @@ const MyButton = (props: Btn) => {
         const rects = MyBtn.current?.getBoundingClientRect();
         setHeight(rects?.width);
     }, []);
-    return <Button {...props} ref={MyBtn} roundHeight={height} onClick={props.onClick}>
+    return <Button
+        {...props}
+        ref={MyBtn}
+        roundHeight={props.shape==='round'?height:undefined}
+        onClick={debouce(props.onClick!, 300)}
+    >
         {props?.children}
     </Button>
 

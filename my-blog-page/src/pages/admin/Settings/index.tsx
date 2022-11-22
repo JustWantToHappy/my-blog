@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Info from "./components/Info"
 import View from "./components/View"
 const Main = styled("div")`
+    margin-top:2vh;
     width:95%;
     height:78%;
     background:var(--main-bg);
@@ -20,9 +21,8 @@ const Footer = styled("footer")`
     justify-content: space-around;
     width:95%;
     height:10%;
-    transform: translateY(2vh);
     color:var(--admin-button-color);
-    font-size:2rem;
+    font-size:1.2rem;
 `;
 const Settings = () => {
     //是否展示网站信息面板

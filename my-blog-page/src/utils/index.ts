@@ -1,4 +1,5 @@
 import { message } from "antd"
+import type { Tip } from "../typing/types"
 // 节流函数
 export const throttle = (fn: Function, delay: number) => {
     var timer: ReturnType<typeof setTimeout> | null;
@@ -14,7 +15,7 @@ export const throttle = (fn: Function, delay: number) => {
         }, delay);
     }
 }
-//防抖函数
+//防抖函数  
 export const debouce = (fn: Function, delay: number) => {
     var timer: ReturnType<typeof setTimeout>;
     return function () {
@@ -52,11 +53,27 @@ export const dataURLToImage = (dataURL: string | null | undefined): Promise<HTML
     })
     return promise;
 }
-
-//成功失败的tip
-export const successMsg = (msg: string) => {
-    message.success(msg);
+//成功失败的tips
+export const successMsg = (tips: Tip) => {
+    const { content, duration } = tips;
+    message.success({
+        content,
+        duration
+    });
 }
-export const failMsg = (msg: string) => {
-    message.error(msg);
+//失败时候的tips
+export const failMsg = (tips: Tip) => {
+    const { content, duration } = tips;
+    message.error({
+        content,
+        duration
+    })
+}
+//温馨提示tips
+export const infoMsg = (tips: Tip) => {
+    const { content, duration } = tips;
+    message.info({
+        content,
+        duration
+    });
 }
