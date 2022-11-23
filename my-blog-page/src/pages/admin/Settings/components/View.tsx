@@ -42,7 +42,7 @@ interface ViewFrom {
     ICPLink: string;
 }
 const View = () => {
-    const CurrentForm: ViewFrom = {
+    const currentForm: ViewFrom = {
         cover: "https://image.raindays.cn/Mood/image/1594348066004.png",
         title: "useHook",
         description: "第十三颗光玉",
@@ -50,11 +50,10 @@ const View = () => {
         ICP: "湘ICP备 254214号",
         ICPLink: "34436346"
     }
-    const [form] = useState<ViewFrom>(CurrentForm);
+    const [form] = useState<ViewFrom>(currentForm);
     const upload = useRef<HTMLInputElement>(null);
     const modifyCover = () => {
         upload.current?.click();
-        // previewPicture(upload.current);
     }
     return <>
         <Container>
@@ -67,7 +66,7 @@ const View = () => {
                 initialValues={form}
             >
                 <Form.Item label="封面图" className="upload-cover" >
-                    <img src={CurrentForm.cover} alt="图片无法显示" />
+                    <img src={currentForm.cover} alt="cover" />
                     <MyButton color='skyblue' onClick={modifyCover}>修改封面</MyButton>
                     <input type="file" ref={upload} />
                 </Form.Item>

@@ -1,19 +1,5 @@
-/* * * * * General CSS * * * * */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #666666;
-  background: #eaeff4;
-}
-
+import styled from "styled-components";
+const LoginBox = styled("div")`
 .wrapper {
   margin: 0 auto;
   width: 100%;
@@ -142,7 +128,6 @@ body {
 .login-form p {
   margin: 0 0 10px 0;
   text-align: left;
-  color: #666666;
   font-size: 15px;
 }
 
@@ -210,3 +195,5 @@ body {
   color: var(--main-bg);
   box-shadow: inset 250px 0 0 0 var(--admin-button-color);
 }
+`;
+export default LoginBox;

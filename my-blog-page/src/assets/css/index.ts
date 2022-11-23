@@ -90,7 +90,7 @@ const CommentMask = styled(Mask)`
         }
         footer{
             width: 100%;
-            bottom:0;
+            bottom:5px;
             position:absolute;
             padding:2px 5%;
             z-index:0;

@@ -4,31 +4,34 @@ import dayjs from "dayjs";
 import { World, Header } from "./style";
 const MyWorld = () => {
     const rightRef = useRef<HTMLDivElement>(null);
-    let title = "在阳光明媚的下午出发";
-    const sakura = {
-        title: "Sakura",
-        moodlog: "遇见樱花",
-        poem: "useHook's Blog.Keep track of your life",
-
-    }
-    const article = {
-        num: 123,
-        tips: "9分钟前发布了新的心情,继续加油哦!"
-    }
-    const [time, setTime] = useState<string>("");
-    const comments = {
-        num: 123,
-        tips: "过去的时间里，收获了更多的心声"
-    }
-    const animations = [
-        'hhh'
-    ]
+    const init = {
+        title: "在阳光明媚的下午出发",
+        sakura: {
+            title: "Sakura",
+            moodlog: "遇见樱花",
+            poem: "useHook's Blog.Keep track of your life",
+            time: "",
+        },
+        article: {
+            num: 123,
+            tips: "9分钟前发布了新的心情,继续加油哦!"
+        },
+        comments: {
+            num: 123,
+            tips: "过去的时间里，收获了更多的心声"
+        },
+        animations: ['hhh']
+    };
+    const [world, setWorld] = useState(init);
     const getCurrentTime = () => {
         var now = dayjs(new Date()).format("YYYY年MM月DD日 hh时mm分 A")
-        setTime(now);
+        return now;
     }
     useEffect(() => {
-        getCurrentTime();
+        const time = getCurrentTime();
+        let newState = { ...init };
+        newState.sakura.time = time;
+        setWorld(newState);
         const style = rightRef.current?.style;
         style && (() => {
             style.filter = "blur(0px)";
@@ -46,7 +49,7 @@ const MyWorld = () => {
         <div className="body">
             <Header>
                 <SmileOutlined />
-                <p> {title}</p>
+                <p> {world.title}</p>
             </Header>
             <div className="content">
                 <div className="introduce">
@@ -56,20 +59,20 @@ const MyWorld = () => {
                     <header>ARTICLE</header>
                     <article>
                         <div>
-                            <i>{article.num}</i>
+                            <i>{world.article.num}</i>
                             <small>篇</small>
                         </div>
-                        <p>{article.tips}</p>
+                        <p>{world.article.tips}</p>
                     </article>
                 </div>
                 <div className="comment">
                     <header>COMMENT</header>
                     <article>
                         <div>
-                            <i>{comments.num}</i>
+                            <i>{world.comments.num}</i>
                             <small>条</small>
                         </div>
-                        <p>{comments.tips}</p>
+                        <p>{world.comments.tips}</p>
                     </article>
                 </div>
                 <div className="animation">
@@ -82,19 +85,21 @@ const MyWorld = () => {
         <div className="decoration">
             <div className="right" ref={rightRef}>
                 <div className="card">
-                    <h1 className="title">{sakura.title}</h1>
+                    <h1 className="title">{world.sakura.title}</h1>
                     <p className="mood">
-                        {sakura.moodlog.split("").join(" ")}
+                        {world.sakura.moodlog.split("").join(" ")}
                     </p>
                     <p className="poem">
-                        {sakura.poem}
+                        {world.sakura.poem}
                     </p>
                 </div>
                 <footer>
                     <p> {`北 京 时 间`}</p>
-                    <p>{time}</p>
+                    <p>{world.sakura.time}</p>
                 </footer>
             </div>
+            {/* 遮罩层 */}
+            <div className="mask" ></div>
         </div>
 
     </World>

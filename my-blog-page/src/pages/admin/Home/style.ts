@@ -8,6 +8,7 @@ display:flex;
 background-color:${(props: { inputTheme: string }) => props.inputTheme === 'dark' ? '#001529' : '#fff'};
 transition:background-color 500ms linear;
 &>:first-child{
+  font-size:0.85rem;
   display: flex;
   flex-direction: column;
   min-width: 250px;

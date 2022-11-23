@@ -10,7 +10,7 @@ header{
   color:${titleColor};
   width:100%;
   height:18%;
-  padding:10px 10px 0;
+  padding:1rem 1rem 0;
 }
 `;
 const articleStyle = `
@@ -84,8 +84,7 @@ color:#666666;
   justify-content: space-between;
   background: white;
   box-shadow: 1px 2px 10px 2px rgba(1,1,1,.4);
-
-  
+  position:relative;
   .right {
     background:${() => `url(${require("../../../assets/imgs/cherry.jpg")})`};
     background-size: cover;
@@ -102,11 +101,11 @@ color:#666666;
       h1 {
         margin-top: 0;
         padding-top: 0;
-        font-size: 4.5em;
+        font-size: 3rem;
         flex: 2;
       }
       p {
-        font-size: 1.2em;
+        font-size: 1rem;
         text-align:center;
         margin:3vh 0;
       }
@@ -121,6 +120,16 @@ color:#666666;
       flex-direction:column;
     }
   }
+  &:hover{
+    .mask{
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background:rgba(1,1,1,.3);
+  }
+  }
 }
     
 `;
@@ -131,6 +140,7 @@ const Header = styled.header`
         align-items: center;
         color:${titleColor};
         position: relative;
+        font-size:0.9rem;
         p{
             transform: translateX(1vw);
         }

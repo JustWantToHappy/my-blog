@@ -8,6 +8,10 @@
   --page-scroll-bg: skyblue;
   /* 后台按钮主要颜色 */
   --admin-button-color: #44c7f5;
+  /* 设置响应式 */
+  font-size: 1.5vw;
+  /* 设置字体主要颜色 */
+  color: #666666;
 }
 
 body {
