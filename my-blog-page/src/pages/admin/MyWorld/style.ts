@@ -12,6 +12,7 @@ header{
   height:18%;
   padding:1rem 1rem 0;
 }
+box-shadow:0.5rem 0.4rem 0.2rem 0.2rem rgba(68,199,245,.5);
 `;
 const articleStyle = `
 article{
@@ -77,7 +78,7 @@ color:#666666;
     }
 }
 .decoration {
-  width: 30%;
+  width: 25%;
   height: 100%;
   margin: auto 0;
   display: flex;

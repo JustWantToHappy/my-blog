@@ -13,6 +13,7 @@ const Main = styled("div")`
     background:var(--main-bg);
     border-radius: 20px;
     min-width: 428px;
+    font-size:1rem !important;
     .ant-upload-list-picture-card-container{
         margin-right:2vw;
     }

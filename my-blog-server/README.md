@@ -31,3 +31,8 @@ $ npm start
 
 - Node.js 8.x
 - Typescript 2.8+
+  
+### 目录说明
+- controller层用于解析用户输入，将用户输入的内容传递给service层处理
+- service层处理复杂的业务逻辑
+- model层定义对象模型

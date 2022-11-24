@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from "styled-components";
 import MyButton from "../../../../components/Button"
 import {
@@ -16,11 +16,19 @@ const Container = styled("div")`
         flex-direction: column;
         justify-content: space-evenly;
         &>:first-child{
+            position: relative;
             img{
-                width:150px;
+                width:7rem;
+                height:4.5rem;
                 object-fit: cover;
                 margin-right: 3vw;
+                cursor: pointer;
             }
+            span{
+                position: absolute;
+                left:0;
+                bottom:-1rem;
+            }   
         }
         input{
             padding-left:0.5rem;
@@ -50,10 +58,15 @@ const View = () => {
         ICP: "湘ICP备 254214号",
         ICPLink: "34436346"
     }
-    const [form] = useState<ViewFrom>(currentForm);
+    const [form, setForm] = useState<ViewFrom>(currentForm);
     const upload = useRef<HTMLInputElement>(null);
     const modifyCover = () => {
         upload.current?.click();
+        upload.current?.addEventListener("change", function (event: any) {
+            const { files } = event.target;
+            currentForm.cover = files ? URL.createObjectURL(files[0]) : '';
+            setForm({ ...currentForm });
+        });
     }
     return <>
         <Container>
@@ -66,7 +79,8 @@ const View = () => {
                 initialValues={form}
             >
                 <Form.Item label="封面图" className="upload-cover" >
-                    <img src={currentForm.cover} alt="cover" />
+                    <img src={form.cover} alt="cover" />
+                    <span>(建议图片大小为1080x690)</span>
                     <MyButton color='skyblue' onClick={modifyCover}>修改封面</MyButton>
                     <input type="file" ref={upload} />
                 </Form.Item>
