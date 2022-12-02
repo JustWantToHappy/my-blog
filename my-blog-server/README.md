@@ -31,3 +31,10 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+## description
+### 使用的库：
+- bcryptjs加密
+- jwt token认证
+- sequelize框架
+- mysql2数据库

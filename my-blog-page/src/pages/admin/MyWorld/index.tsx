@@ -1,45 +1,39 @@
-import { useState, useEffect, useRef } from "react"
-import { SmileOutlined } from "@ant-design/icons"
-import dayjs from "dayjs";
+import { useEffect, useRef, useReducer } from "react";
+import { SmileOutlined } from "@ant-design/icons";
+import WorldReducer from "../../../reducers/WorldReducer";
+import { WORLD_ACTION_TYPE } from "../../../typing/contants";
 import { World, Header } from "./style";
+const init = {
+    title: "在阳光明媚的下午出发",
+    sakura: {
+        title: "Sakura",
+        moodlog: "遇见樱花",
+        poem: "useHook's Blog.Keep track of your life",
+        time: "",
+    },
+    article: {
+        num: 123,
+        tips: "9分钟前发布了新的心情,继续加油哦!"
+    },
+    comments: {
+        num: 123,
+        tips: "过去的时间里，收获了更多的心声"
+    },
+    animations: ['hhh']
+};
 const MyWorld = () => {
     const rightRef = useRef<HTMLDivElement>(null);
-    const init = {
-        title: "在阳光明媚的下午出发",
-        sakura: {
-            title: "Sakura",
-            moodlog: "遇见樱花",
-            poem: "useHook's Blog.Keep track of your life",
-            time: "",
-        },
-        article: {
-            num: 123,
-            tips: "9分钟前发布了新的心情,继续加油哦!"
-        },
-        comments: {
-            num: 123,
-            tips: "过去的时间里，收获了更多的心声"
-        },
-        animations: ['hhh']
-    };
-    const [world, setWorld] = useState(init);
-    const getCurrentTime = () => {
-        var now = dayjs(new Date()).format("YYYY年MM月DD日 hh时mm分 A")
-        return now;
-    }
+    const [world, dispatch] = useReducer(WorldReducer, init);
     useEffect(() => {
-        const time = getCurrentTime();
-        let newState = { ...init };
-        newState.sakura.time = time;
-        setWorld(newState);
         const style = rightRef.current?.style;
+        dispatch({ type: WORLD_ACTION_TYPE.TIME });
         style && (() => {
             style.filter = "blur(0px)";
         })();
     }, []);
     useEffect(() => {
         let timer = setInterval(() => {
-            getCurrentTime();
+            dispatch({ type: 'time' });
         }, 1000 * 60);
         return function () {
             clearInterval(timer);

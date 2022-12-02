@@ -49,4 +49,22 @@ declare module Home {
         type: number;
         introduce?: string;
     }
+    type myworld = {
+        title: string;
+        sakura: {
+            title: string;
+            moodlog: string;
+            poem: string;
+            time: string;
+        };
+        article: {
+            num: number;
+            tips: string;
+        };
+        comments: {
+            num: number;
+            tips: string;
+        };
+        animations: string[];
+    }
 }

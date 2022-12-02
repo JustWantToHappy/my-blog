@@ -1,0 +1,5 @@
+sequelize常用API：
+查询语句：
+    1.通过主键查询：findByPk(id)
+    2.条件查询一条数据：findOne(where:{})
+    

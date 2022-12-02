@@ -15,14 +15,14 @@ interface Btn {
 }
 //不对外部暴露的属性值
 interface BtnAdd extends Btn {
-    roundHeight?: number|undefined;
+    roundHeight?: number | undefined;
 }
 const Button = styled("button")`
     background:#fff;
     color:${(props: Btn) => props?.color ?? 'black'};
     border-radius: ${(props: Btn) => props?.shape === 'round' ? '50%' : '0%'};
-    height:${(props: BtnAdd) => (props.roundHeight?? '')+'px'};
-    font-size:${(props: Btn) => (props.fontSize ?? '1rem')+'px'};
+    height:${(props: BtnAdd) => (props.roundHeight ?? '') + 'px'};
+    font-size:${(props: Btn) => (props.fontSize ?? '1rem') + 'px'};
     border:1px solid #d4d4d4;
     padding:0.2rem;
     cursor: pointer;
@@ -44,7 +44,7 @@ const MyButton = (props: Btn) => {
     return <Button
         {...props}
         ref={MyBtn}
-        roundHeight={props.shape==='round'?height:undefined}
+        roundHeight={props.shape === 'round' ? height : undefined}
         onClick={debouce(props.onClick!, 300)}
     >
         {props?.children}
