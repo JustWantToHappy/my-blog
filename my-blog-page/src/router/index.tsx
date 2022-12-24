@@ -1,5 +1,10 @@
 // 路由配置文件,路由表
 import UserHome from "../pages/user/Home"
+import Page from "../pages/user/Page"
+import Article from "../pages/user/Article"
+/**
+ * 后台管理路由
+ */
 import AdminHome from "../pages/admin/Home"
 import AdminLogin from "../pages/admin/Login"
 import AuthRoute from "./AuthRoute"
@@ -18,8 +23,20 @@ const routes: Array<Router> = [
     {
         path: "/",
         name: "home",
-        element: <UserHome></UserHome>,
-        permissions: []
+        element: <UserHome/>,
+        permissions: [],
+        children: [
+            {
+                path: "page/:id",
+                name: "page",
+                element:<Page/>
+            }
+        ]
+    },
+    {
+        path: "/article/:id",
+        name: "article",
+        element:<Article />
     },
     {
         path: "/admin",

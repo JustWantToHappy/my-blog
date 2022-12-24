@@ -1,4 +1,22 @@
 import styled from "styled-components";
+const sidebarBoxBefore = `
+&::before{
+    display:inline-block;
+    z-index:1;
+    content:"";
+    position:relative;
+    border-radius: 50%;
+    background:#f92900;
+    width:12px;
+    height: 12px;
+    box-shadow: 20px 0 #fbc606,40px 0 #35cd4b;
+    float:right;
+    right:55px;
+    top:35px;
+    border-color:transparent;
+    margin-top:-15px;
+}
+`;
 export const StyleIndex = styled("div")`
 width:100%;
 position: relative;
@@ -81,45 +99,131 @@ i{
     flex-direction: column;
 }
 `;
+// 注意，要设置成粘性元素的父元素高度不能够低于子元素，且父元素不能够有overflow:auto
 export const StyleHome = styled("div")`
-height: 290vh;
+margin:2rem 0;
+height:80rem;
+position: relative;
 .home-admin{
     width:30%;
-    height:100vh;
-    background:green;
     display: inline-block;
     position: sticky;
-    top:0px;
+    top:2rem;
     left:0;
     @media screen and (max-width:920px){
         display: none;
     }
+    &>div{
+        width:75%;
+        float:right;
+        position: relative;
+        border-radius: 10px;
+        margin-bottom:2rem;
+        background-color: var(--main-bg);
+        border:1px solid var(--main-border-color);
+    }
+
+}
+.home-admin-avator{
+    height:15rem;
+    overflow: hidden;
+    ${sidebarBoxBefore};
+    &>div:nth-child(1){
+        background-image: url(http://www.dmoe.cc/random.php);
+        background-position-x:center;
+        background-position-y:center;
+        min-height:120px;
+        width:100%;
+        background-size:cover;
+        position:relative;
+        overflow:hidden;
+        border-radius: 10px 10px 0 0;
+        &::after{
+            content:"";
+            width: 100%;
+            height:40%;
+            position:absolute;
+            bottom:0;
+            left:0;
+            background:linear-gradient(to top,white,transparent);
+        }
+    }
+    &>div:nth-child(2){
+        text-align:center;
+        img{
+            width:25%;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        span{
+            font-weight: bold;
+        }
+    }
+    &>div:nth-child(3){
+        width:100%;
+        transform: translateY(-50%);
+        display:flex;
+        justify-content: space-around;
+    }
+}
+.home-admin-new-reply{
+    height:16rem;
+    ${sidebarBoxBefore};
+    &>p{
+        left:55px;
+        top:15px;
+        position:absolute;
+        width:50%;
+        letter-spacing: 0.5rem;
+    }
+}
+.home-admin-watch{
+    height:16rem;
+    ${sidebarBoxBefore};
+    &>p{
+        left:55px;
+        top:15px;
+        position:absolute;
+        width:50%;
+        letter-spacing: 0.5rem;
+    }
 }
 .home-article{
-    background:skyblue;
-    width: 70%;
-    height: 290vh;
+    width: 60%;
+    height: 80rem;
+    margin-left:5%;
     display: inline-block;
     text-align: center;
-    float:right;
+    position: absolute ;
     @media screen and (max-width:920px){
         width:100%;
+        margin-left:0px;
+    }
+    @media (min-width:558px) and (max-width:919px){
+        width:80%;
+        margin-left:10%;
+    }
+    &>ul{
+        list-style: none;
+        margin:0;
+        padding:0;
     }
 .content{
-    height:30vh;
-    width:100%;
-    padding:4vh 0;
+    height:11rem;
     display:flex;
-    .title{
-        height: 100%;
-        width:59%;
-        display:flex;
-        background-color: red;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        transform: translate3d(3vw,0,0);
-        }
+    border-radius: 1rem;
+    border:1px solid var(--main-border-color);
+    margin-bottom:2rem;
+    transition: all .4s linear;
+    position:relative;
+    cursor: pointer;
+    &>img{
+        height:100%;
+        position: absolute;
+    }
+    &:hover{
+        transform: scale(1.05) rotate(1deg);
+    }
     }
 }
 

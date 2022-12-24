@@ -17,7 +17,8 @@ const style: React.CSSProperties = {
     justifyContent: "center",
     alignItems: 'center'
 };
-const ReturnTop = () => {
+const ReturnTop = (props: { container: HTMLElement }) => {
+    const { container } = props;
     const [issun, setSun] = useState(true);
     const contextObj = useContext(Context);
     const changeTheme = (e: React.MouseEvent) => {
@@ -25,7 +26,7 @@ const ReturnTop = () => {
         setSun(!issun);
         contextObj.changeTheme();
     }
-    return <BackTop>
+    return <BackTop target={() => container}>
         <div style={style}>
             <span onClick={changeTheme}>
                 {issun && <img src={sun} alt="" style={{ width: "2rem" }} />}

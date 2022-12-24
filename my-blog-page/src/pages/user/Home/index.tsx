@@ -1,51 +1,25 @@
 import { StyleIndex } from "./style";
 import { StyleHome } from "./style";
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useRef } from "react";
 import { Context } from "../../../App";
+import { Divider,Pagination } from "antd";
 import nav from "../../../assets/icons/nav.svg";
 import close from "../../../assets/icons/close.svg";
+import Page from "../Page";
+import { Outlet,useLocation,useNavigate } from "react-router-dom";
 const Home = () => {
     const contextObj = useContext(Context);
     const container = useRef<HTMLDivElement>(null);
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
     const showNavHeader = (event: React.MouseEvent) => {
         event.preventDefault();
         contextObj.closeOrOpen();
     }
-    const [data, setData] = useState<Array<Home.article>>([]);
-
-    useEffect(() => {
-        let data = [
-            {
-                id: 1,
-                name: "sb",
-                cover: "",
-                content: "",
-                type: 1
-            },
-            {
-                id: 2,
-                name: "sb",
-                cover: "",
-                content: "",
-                type: 1
-            },
-            {
-                id: 3,
-                name: "sb",
-                cover: "",
-                content: "",
-                type: 1
-            },
-            {
-                id: 4,
-                name: "sb",
-                cover: "",
-                content: "",
-                type: 1
-            },
-        ]
-        setData(data);
-    }, []);
+    const changePageNum = function (current: number) {
+        // 做一些处理,如果请求还没有响应，则进度条加载，如果请求已经响应，跳转路由
+        navigate(`/page/${current}`);
+    }
     return <>
         {/* 首屏图片 */}
         <StyleIndex show={contextObj.showMenu} ref={container} >
@@ -80,30 +54,32 @@ const Home = () => {
         </StyleIndex>
         {/* 首屏内容展示 */}
         <StyleHome >
-            <div className={["home-admin"].join(" ")}>
+            <div className={"home-admin"}>
                 <div className="home-admin-avator">
-                    1
+                    <div></div>
+                    <div>
+                        <img src="https://q1.qlogo.cn/g?b=qq&nk=2719131811&s=100" alt="avatar" />
+                        <br />
+                        <span>useHook</span>
+                        <Divider />
+                    </div>
+                    <div>
+                        <span>文章</span>
+                        <span>评论</span>
+                        <span>标签</span>
+                    </div>
                 </div>
                 <div className="home-admin-new-reply">
-                    2
+                    <p>最新回复</p>
                 </div>
                 <div className="home-admin-watch">
-                    3
+                    <p>随便看看</p>
                 </div>
             </div>
             <div className="home-article" >
-                <header>最新文章</header>
-                <ul>
-                    {data.map((obj, index) => {
-                        return <li className="content" key={index}>
-                            <div className="title">
-                                <span>{obj.name}</span>
-                                <span>{obj.type}</span>
-                                <span>{obj.introduce}</span>
-                            </div>
-                        </li>
-                    })}
-                </ul>
+                <Outlet />
+                {!pathname.includes("page")&&<Page/>}
+                <Pagination defaultCurrent={1} total={50} onChange={changePageNum} />
             </div>
         </StyleHome>
     </>

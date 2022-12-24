@@ -9,4 +9,5 @@ enum ACTICLE_TYPE {
 enum WORLD_ACTION_TYPE {
     TIME = "time",
 }
+
 export { ACTICLE_TYPE, WORLD_ACTION_TYPE };
